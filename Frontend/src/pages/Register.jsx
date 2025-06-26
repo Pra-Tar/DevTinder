@@ -26,7 +26,7 @@ const Register = () => {
     try {
       // Register the user
       const response = await axios.post(
-        "http://localhost:3000/api/auth/register",
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
         formData,
         {
           headers: {
@@ -39,7 +39,7 @@ const Register = () => {
       // If registration is successful, fetch user profile
       if (response.status >= 200 && response.status < 300) {
         const user = await axios.get(
-          "http://localhost:3000/api/users/profile",
+          `${import.meta.env.VITE_API_URL}/api/users/profile`,
           {
             headers: {
               "Content-Type": "application/json",

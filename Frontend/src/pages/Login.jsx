@@ -16,7 +16,7 @@ const Login = () => {
       setError(""); // Clear previous errors
 
       const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         { email, password },
         {
           headers: {
@@ -28,7 +28,7 @@ const Login = () => {
 
       if (response.status >= 200 && response.status < 300) {
         const user = await axios.get(
-          "http://localhost:3000/api/users/profile",
+          `${import.meta.env.VITE_API_URL}/api/users/profile`,
           {
             headers: {
               "Content-Type": "application/json",

@@ -10,6 +10,9 @@ const App = () => {
   const dispatch = useDispatch();
    const navigate = useNavigate();
 
+   console.log("API URL:", import.meta.env.VITE_API_URL);
+
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const token = localStorage.getItem("token"); // if you're storing one

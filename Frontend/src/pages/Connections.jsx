@@ -6,10 +6,11 @@ const Connections = () => {
   const [requests, setRequests] = useState([]);
   const user = useSelector((state) => state.user.user);
 
+
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/users/requests", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/requests`, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -26,7 +27,7 @@ const Connections = () => {
 
 const handleAccept = async (req) => {
   try {
-    await axios.post(`http://localhost:3000/api/connections/accepted/${req.fromUserId._id}`, {}, {
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/connections/accepted/${req.fromUserId._id}`, {}, {
       withCredentials: true,
     });
 
@@ -39,7 +40,7 @@ const handleAccept = async (req) => {
 
 const handleReject = async (req) => {
   try {
-    await axios.post(`http://localhost:3000/api/connections/rejected/${req.fromUserId._id}`, {}, {
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/connections/rejected/${req.fromUserId._id}`, {}, {
       withCredentials: true,
     });
 

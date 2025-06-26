@@ -13,7 +13,7 @@ const Feed = () => {
     const fetchFeed = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/users/feed?page=1&limit=100",
+          `${import.meta.env.VITE_API_URL}/api/users/feed?page=1&limit=100`,
           {
             withCredentials: true,
             headers: {
@@ -40,7 +40,7 @@ const Feed = () => {
 
   const handleAction = async (actionType) => {
     const currentUser = users[currentIndex];
-    const endpoint = `http://localhost:3000/api/connections/${actionType}/${currentUser._id}`;
+    const endpoint = `${import.meta.env.VITE_API_URL}/api/connections/${actionType}/${currentUser._id}`;
 
     try {
       await axios.post(

@@ -8,7 +8,7 @@ const Followers = () => {
   useEffect(() => {
     const fetchFollowers = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/connections/followers", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/connections/followers`, {
           withCredentials: true,
         });
 

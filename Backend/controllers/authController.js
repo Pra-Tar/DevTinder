@@ -22,8 +22,13 @@ exports.register =  async (req, res)=>{
         const user = await User.create({name, email, password})
         // after user is created and logged in create a token.
         const token = generateToken(user._id)
-        res.cookie("Token",token)
-        res.status(201).json("User registered successfully!")
+        res.cookie("Token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        });
+        res.status(201).json("User registered successfully!");
+
         // res.status(201).json({
         //     token,
         //     user:{
@@ -47,8 +52,13 @@ exports.login = async (req, res)=>{
             return res.status(401).json({message:"Invalid credentials!"})
         }
         const token = generateToken(user._id)
-        res.cookie("Token",token)
-        res.status(201).json(`Welcome ${user.name} <3!`)
+        res.cookie("Token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        });
+        res.status(201).json(`Welcome ${user.name} <3!`);
+
         // res.json({
         //     token, 
         //     user:{
