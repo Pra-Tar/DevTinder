@@ -12,7 +12,7 @@ const Connections = () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/requests`, {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json", 
           },
           withCredentials: true,
         });
