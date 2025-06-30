@@ -58,6 +58,8 @@ exports.login = async (req, res)=>{
         sameSite: "None",
         });
         res.status(201).json(`Welcome ${user.name} <3!`);
+        console.log("Login request body:", req.body);
+
 
         // res.json({
         //     token, 
