@@ -14,7 +14,7 @@ const connectionRoutes = require("./routes/connectionRoutes");
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://devtinder-frontend-zz8f.onrender.com',
   credentials: true,
 }));
 app.use(express.json());
