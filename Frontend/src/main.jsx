@@ -15,6 +15,9 @@ import Register from "./pages/Register.jsx";
 import "./index.css";
 import EditProfile from './pages/EditProfile.jsx';
 import Followers from './pages/Followers.jsx';
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import TermsOfService from "./pages/TermsOfService.jsx";
+import RefundPolicy from "./pages/RefundPolicy.jsx";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +56,19 @@ const router = createBrowserRouter([
       {
         path:"edit",
         element:<EditProfile/>
-      }
+      },
+      {
+        path: "page/privacy-policy",  // ✅ Add this line
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "page/terms-of-service",  // ✅ Add this line
+        element: <TermsOfService />,
+      },
+      {
+        path: "page/refund-policy",
+        element: <RefundPolicy />,
+      },
     ],
   },
 ]);
