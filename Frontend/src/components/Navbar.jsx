@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login, logout } from '../slice/userSlice';
-
+import { login, logout } from "../slice/userSlice";
 
 const Navbar = () => {
-  const userName = useSelector((state)=>state.user.user)
-  const isAuthenticated = useSelector((state)=>state.user.isAuthenticated)
+  const userName = useSelector((state) => state.user.user);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,14 +15,22 @@ const Navbar = () => {
     navigate("/home"); // redirect to login
   };
 
-  const handleProfile = ()=>{
-     const token = localStorage.getItem("user"); // or 'user' depending on your key
+  const handleProfile = () => {
+    const token = localStorage.getItem("user"); // or 'user' depending on your key
     if (token) {
       navigate("/profile");
     } else {
       alert("Please log in first");
     }
-  }
+  };
+  const handleChat = () => {
+    const token = localStorage.getItem("user"); // or 'user' depending on your key
+    if (token) {
+      navigate("/chat");
+    } else {
+      alert("Please log in first");
+    }
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-sm px-4">
@@ -33,7 +40,9 @@ const Navbar = () => {
 
         {/* Right: user section */}
         <div className="flex items-center gap-3">
-          {isAuthenticated && <p className="text-base font-medium">Welcome {userName?.name}!</p>} 
+          {isAuthenticated && (
+            <p className="text-base font-medium">Welcome {userName?.name}!</p>
+          )}
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -51,6 +60,11 @@ const Navbar = () => {
                 <a className="justify-between" onClick={handleProfile}>
                   Profile
                   <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a className="justify-between" onClick={handleChat}>
+                  Chat
                 </a>
               </li>
               <li>
