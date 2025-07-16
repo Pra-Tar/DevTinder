@@ -5,8 +5,10 @@ const connectDB = require("./config/db");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const RazorPay = require("razorpay");
+const http = require("http");
+const socketIo = require("socket.io");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -30,6 +32,10 @@ app.use(cookieParser());
 
 connectDB();
 
+// Create HTTP server to use with socket.io
+const server = http.createServer(app);
+const io = socketIo(server);
+
 app.post("create-order", async (req, res) => {
   try {
     const options = {
@@ -52,6 +58,24 @@ app.post("create-order", async (req, res) => {
   }
 });
 
+// Socket.io connection for real-time events
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  // Event for receiving a new message from the client
+  socket.on("send-message", (messageData) => {
+    console.log("Received message:", messageData);
+
+    // Broadcast the message to all connected clients
+    io.emit("new-message", messageData);
+  });
+
+  // Disconnect event
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/connections", connectionRoutes);
@@ -65,6 +89,6 @@ app.use((req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server started on PORT:${PORT}`);
 });

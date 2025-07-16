@@ -50,6 +50,10 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: "chat",
+        element: <Chat />,
+      },
+      {
         path: "payment",
         element: <Payment />,
       },
