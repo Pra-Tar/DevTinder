@@ -34,7 +34,13 @@ connectDB();
 
 // Create HTTP server to use with socket.io
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = new Server(server, {
+  cors: {
+    origin: "https://devtinder-frontend-zz8f.onrender.com",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
 
 app.post("create-order", async (req, res) => {
   try {
