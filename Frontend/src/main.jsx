@@ -19,6 +19,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import TermsOfService from "./pages/TermsOfService.jsx";
 import RefundPolicy from "./pages/RefundPolicy.jsx";
 import Payment from "./pages/Payment.jsx";
+import Chat from "./pages/Chat.jsx"
 
 const router = createBrowserRouter([
   {
