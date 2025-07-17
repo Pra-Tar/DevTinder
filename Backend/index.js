@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const RazorPay = require("razorpay");
 const http = require("http");
 const socketIo = require("socket.io");
+const { Server } = require("socket.io"); 
 
 const PORT = process.env.PORT || 5000;
 
